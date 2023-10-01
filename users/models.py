@@ -3,14 +3,16 @@ from django.db import models
 
 
 class UserProfile(AbstractUser):
-    TYPE_BASIC = "basic"
-    TYPE_PREMIUM = "premium"
-    TYPE_ENTERPRISE = "enterprise"
-    TYPE_CHOICES = (
-        (TYPE_BASIC, "Basic"),
-        (TYPE_PREMIUM, "Premium"),
-        (TYPE_ENTERPRISE, "Enterprise"),
-    )
-    email = models.EmailField("email address", blank=True, null=True)
-    account_tier = models.CharField(max_length=20, choices=TYPE_CHOICES, default=TYPE_BASIC)
+    tier = models.ForeignKey("users.Tier", on_delete=models.CASCADE, null=True)
+
+
+class Tier(models.Model):
+    name = models.CharField(max_length=255)
+    tier_options = models.ManyToManyField("users.TierOptions")
+    allow_originally_size_image = models.BooleanField(default=False)
+    allow_fetch_expired = models.BooleanField(default=False)
+
+
+class TierOptions(models.Model):
+    height = models.IntegerField(default=200)
 

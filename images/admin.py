@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from images.models import Image
+from images.models import Image, ImageVariant
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -10,10 +10,10 @@ class ImageAdmin(admin.ModelAdmin):
         "file",
         "title",
         "owner",
-        "url",
         "created_at",
     ]
     list_filter = ("owner", )
 
 
 admin.site.register(Image, ImageAdmin)
+admin.site.register(ImageVariant)
