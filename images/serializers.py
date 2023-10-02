@@ -1,16 +1,25 @@
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 
 from images.models import Image, ImageVariant
 
 
 class ImageVariantSerializer(serializers.ModelSerializer):
+    thumbnail = serializers.SerializerMethodField()
+
     class Meta:
         model = ImageVariant
         fields = (
             "id",
             "thumbnail",
+            "variant_name",
             "option",
         )
+
+    def get_thumbnail(self, model: ImageVariant) -> str:
+        image_id = model.id
+        url = reverse("serve_image", kwargs={"image_id": image_id})
+        return "http://localhost:8000" + url
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -26,5 +35,6 @@ class ImageSerializer(serializers.ModelSerializer):
             "title",
             "owner",
             "thumbnails",
+            "seconds",
             "created_at",
         )

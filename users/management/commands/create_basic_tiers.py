@@ -9,8 +9,12 @@ class Command(BaseCommand):
     help = "Create basic Tries and TriesOptions objects"
 
     def handle(self, *args: Any, **options: Any) -> None:
-        height200 = TierOptions.objects.create(height=200)
-        height400 = TierOptions.objects.create(height=400)
+        height200 = TierOptions.objects.create(
+            height=200, variant_name="200px in height"
+        )
+        height400 = TierOptions.objects.create(
+            height=400, variant_name="400px in height"
+        )
         basic_tier = Tier.objects.create(name="Basic")
         premium_tier = Tier.objects.create(
             name="Premium", originally_uploaded_image=True

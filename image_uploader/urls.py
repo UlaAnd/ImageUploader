@@ -21,6 +21,7 @@ from rest_framework import routers
 
 from image_uploader import settings
 from images.api import ImageViewSet
+from images.views import serve_image
 from users.api import TierViewSet
 
 router = routers.DefaultRouter()
@@ -32,5 +33,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v2/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls")),
+    path("images/<int:image_id>/", serve_image, name="serve_image"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

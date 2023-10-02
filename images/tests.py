@@ -7,12 +7,11 @@ from images.models import Image, ImageVariant
 from users.factories import UserProfileFactory
 
 
-
 @pytest.mark.django_db(True)
 class TestImageApiUpload(APITestCase):
     def test_image_creation_creates_image_option(self):
         owner = UserProfileFactory.create()
-        upload_to_path = Image._meta.get_field("file").upload_to
+        Image._meta.get_field("file").upload_to
 
         image_file = SimpleUploadedFile(
             "test_image.jpg", b"content", content_type="image/jpeg"
