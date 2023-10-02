@@ -12,7 +12,7 @@ class ImageAdmin(admin.ModelAdmin):
         "owner",
         "created_at",
     ]
-    list_filter = ("owner", )
+    list_filter = ("owner",)
 
 
 admin.site.register(Image, ImageAdmin)

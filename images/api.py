@@ -7,9 +7,8 @@ from images.serializers import ImageSerializer
 class ImageViewSet(viewsets.ModelViewSet):
     serializer_class = ImageSerializer
     queryset = Image.objects.all()
-    # Add the basename for the viewset
-    basename = 'image'
-
+    basename = "image"
+    #
     # def get_queryset(self):
     #     # Get the currently logged-in user's profile
     #     user_profile = self.request.user
@@ -18,5 +17,5 @@ class ImageViewSet(viewsets.ModelViewSet):
     #     queryset = Image.objects.filter(owner=user_profile)
     #
     #     return queryset
-
-
+    #
+    #
