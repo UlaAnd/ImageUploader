@@ -18,8 +18,4 @@ class ImageSerializer(serializers.ModelSerializer):
 class ImageVariantSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImageVariant
-        fields = (
-            "id",
-        )
-
-
+        fields = ("id",)

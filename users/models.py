@@ -15,4 +15,3 @@ class Tier(models.Model):
 
 class TierOptions(models.Model):
     height = models.IntegerField(default=200)
-

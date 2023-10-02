@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "images",
     "users",
-
 ]
 
 MIDDLEWARE = [
@@ -54,7 +53,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
 ]
 
 ROOT_URLCONF = "image_uploader.urls"
@@ -136,5 +134,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #         'rest_framework.permissions.IsAuthenticated',
 #     ),
 # }
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
