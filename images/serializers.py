@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from images.models import Image
+from images.models import Image, ImageVariant
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -11,6 +11,15 @@ class ImageSerializer(serializers.ModelSerializer):
             "file",
             "title",
             "owner",
-            "url",
             "created_at",
         )
+
+
+class ImageVariantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImageVariant
+        fields = (
+            "id",
+        )
+
+
