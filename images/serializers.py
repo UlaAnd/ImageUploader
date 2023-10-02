@@ -14,7 +14,9 @@ class ImageVariantSerializer(serializers.ModelSerializer):
 
 
 class ImageSerializer(serializers.ModelSerializer):
-    thumbnails = ImageVariantSerializer(many=True, read_only=True,  source='imagevariant_set')
+    thumbnails = ImageVariantSerializer(
+        many=True, read_only=True, source="imagevariant_set"
+    )
 
     class Meta:
         model = Image

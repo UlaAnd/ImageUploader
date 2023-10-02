@@ -2,9 +2,9 @@ import sys
 from io import BytesIO
 from typing import Any, List
 
-from PIL import Image as PILImage
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
+from PIL import Image as PILImage
 
 
 class Image(models.Model):
@@ -43,7 +43,7 @@ class Image(models.Model):
             super(Image, self).save()
 
     @property
-    def thumbnails(self):
+    def thumbnails(self) -> List:
         return [self.imagevariant_set.all()]
 
 
@@ -53,4 +53,3 @@ class ImageVariant(models.Model):
     option = models.ForeignKey(
         "users.TierOptions", on_delete=models.CASCADE, blank=True
     )
-

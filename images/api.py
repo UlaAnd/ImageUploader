@@ -1,3 +1,5 @@
+from typing import Any
+
 from rest_framework import viewsets
 
 from images.models import Image, ImageVariant
@@ -9,7 +11,7 @@ class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     basename = "image"
 
-    def get_queryset(self):
+    def get_queryset(self) -> Any:
         user_profile = self.request.user
         queryset = Image.objects.filter(owner=user_profile)
         return queryset
