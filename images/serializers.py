@@ -26,6 +26,7 @@ class ImageSerializer(serializers.ModelSerializer):
     thumbnails = ImageVariantSerializer(
         many=True, read_only=True, source="imagevariant_set"
     )
+    owner = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = Image
@@ -33,8 +34,9 @@ class ImageSerializer(serializers.ModelSerializer):
             "id",
             "file",
             "title",
-            "owner",
             "thumbnails",
+            "owner",
             "seconds",
             "created_at",
         )
+

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from users.models import Tier, UserProfile
+from users.models import Tier, UserProfile, TierOptions
 
 
 class UserProfilesAdmin(admin.ModelAdmin):
@@ -8,6 +8,13 @@ class UserProfilesAdmin(admin.ModelAdmin):
         "id",
         "username",
         "tier",
+    ]
+
+
+class TierOptionsAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "height",
     ]
 
 
@@ -20,3 +27,4 @@ class TierAdmin(admin.ModelAdmin):
 
 admin.site.register(UserProfile, UserProfilesAdmin)
 admin.site.register(Tier, TierAdmin)
+admin.site.register(TierOptions, TierOptionsAdmin)
