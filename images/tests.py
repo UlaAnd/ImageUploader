@@ -1,13 +1,11 @@
 import pytest
-import requests
 from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
 
 from images.models import Image, ImageVariant
 from users.factories import UserProfileFactory
-from users.management.commands.create_basic_tiers import Command
-from users.models import Tier
+
 
 
 @pytest.mark.django_db(True)
