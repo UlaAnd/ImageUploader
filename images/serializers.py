@@ -40,7 +40,7 @@ class ImageSerializer(serializers.ModelSerializer):
             "created_at",
         )
 
-    def to_representation(self, instance):
+    def to_representation(self, instance: Image) -> list:
         data = super().to_representation(instance)
-        data['file'] = "File not available for GET requests"
+        data["file"] = "File not available for GET requests"
         return data

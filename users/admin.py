@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from users.models import Tier, UserProfile, TierOptions
+from users.models import Tier, TierOptions, UserProfile
 
 
 class UserProfilesAdmin(admin.ModelAdmin):

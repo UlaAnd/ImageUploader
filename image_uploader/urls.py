@@ -22,7 +22,6 @@ from rest_framework import routers
 from image_uploader import settings
 from images.api import ImageViewSet
 from images.views import serve_image
-from users.api import TierViewSet
 
 router = routers.DefaultRouter()
 router.register(r"images", ImageViewSet)

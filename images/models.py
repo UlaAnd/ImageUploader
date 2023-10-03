@@ -54,7 +54,8 @@ class Image(models.Model):
         output_size = (width, height)
         img.thumbnail(output_size)
         # Determine the original image format
-        original_format = img.format.lower()
+        if img.format:
+            original_format = img.format.lower()
 
         # Save the image in the same format as the original
         img.save(output_thumb, format=original_format, optimize=True)
@@ -70,7 +71,9 @@ class Image(models.Model):
             None,
         )
         variant_name = f"height {option.height} px"
-        ImageVariant.objects.create(thumbnail=thumbnail, image=self, option=option, variant_name=variant_name)
+        ImageVariant.objects.create(
+            thumbnail=thumbnail, image=self, option=option, variant_name=variant_name
+        )
 
     @property
     def thumbnails(self) -> List:

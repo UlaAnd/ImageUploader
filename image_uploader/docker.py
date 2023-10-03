@@ -7,7 +7,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-from .settings import *
+import os  # type: ignore
+
+from .settings import *  # type: ignore # noqa
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
