@@ -43,7 +43,6 @@ class Image(models.Model):
                         expire_after=expire_after,
                         variant_name="expiring link",
                     )
-            super(Image, self).save()
 
     def create_image_variant(self, option: TierOptions) -> None:
         height = option.height
@@ -88,3 +87,4 @@ class ImageVariant(models.Model):
     )
     variant_name = models.CharField(max_length=255)
     expire_after = models.DateTimeField(blank=True, null=True)
+
