@@ -16,6 +16,9 @@ class ImageViewSet(viewsets.ModelViewSet):
         queryset = Image.objects.filter(owner=user_profile)
         return queryset
 
+    def perform_create(self, serializer: ImageSerializer) -> None:
+        serializer.save(owner=self.request.user)
+
 
 class ImageVariantViewSet(viewsets.ModelViewSet):
     serializer_class = ImageVariantSerializer
