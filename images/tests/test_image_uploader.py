@@ -1,20 +1,28 @@
 import pytest
-from django.core.files.uploadedfile import SimpleUploadedFile
-from rest_framework.reverse import reverse
-from rest_framework.test import APITestCase
 
 from images.factories import ImageFactory
 from images.models import Image, ImageVariant
 from users.factories import UserProfileFactory
+from users.management.commands.create_basic_tiers import Command
+from users.models import UserProfile, Tier
 
 
 @pytest.mark.django_db(True)
 class TestImageUpload:
 
-    def test_image_creation_creates_image_option2(self):
+    def test_image_creation_creates_image_option(self):
         owner = UserProfileFactory.create()
-        test_image = ImageFactory.create()
-        Image.objects.create(file=test_image.file, owner=owner, title="test")
+        ImageFactory.create(owner=owner, title="test")
         links = ImageVariant.objects.all()
         assert links is not None
+
+    def test_enterprise_images_creates(self):
+        command = Command()
+        command.handle()
+        enterprise_tier = Tier.objects.get(name="Enterprise")
+        owner = UserProfileFactory.create(tier=enterprise_tier)
+        ImageFactory.create(owner=owner, title="test")
+        links = ImageVariant.objects.count()
+        assert links == 4
+
 
