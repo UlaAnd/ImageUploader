@@ -25,13 +25,12 @@ from images.views import serve_image
 from users.api import TierViewSet
 
 router = routers.DefaultRouter()
-router.register(r"uploader", ImageViewSet)
-router.register(r"tiers", TierViewSet)
+router.register(r"images", ImageViewSet)
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v2/", include(router.urls)),
+    path("api/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls")),
     path("images/<int:image_id>/", serve_image, name="serve_image"),
 ]

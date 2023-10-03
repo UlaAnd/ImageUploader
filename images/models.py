@@ -1,3 +1,4 @@
+import os
 import sys
 from datetime import timedelta
 from io import BytesIO
@@ -52,18 +53,24 @@ class Image(models.Model):
         width = int((float(img.size[0]) * float(width_percent)))
         output_size = (width, height)
         img.thumbnail(output_size)
-        img.save(output_thumb, format="JPEG", quality=90)
+        # Determine the original image format
+        original_format = img.format.lower()
+
+        # Save the image in the same format as the original
+        img.save(output_thumb, format=original_format, optimize=True)
         output_thumb.seek(0)
-        img_name = self.file.name.split(".")[0]
+
+        img_name, ext = os.path.splitext(self.file.name)
         thumbnail = InMemoryUploadedFile(
             output_thumb,
             "ImageField",
-            f"{img_name}_thumb.jpg",
-            "image/jpeg",
+            f"{img_name}_thumb{ext}",  # Preserve the original file extension
+            f"image/{original_format}",  # Set the MIME type based on the original format
             sys.getsizeof(output_thumb),
             None,
         )
-        ImageVariant.objects.create(thumbnail=thumbnail, image=self, option=option)
+        variant_name = f"height {option.height} px"
+        ImageVariant.objects.create(thumbnail=thumbnail, image=self, option=option, variant_name=variant_name)
 
     @property
     def thumbnails(self) -> List:
